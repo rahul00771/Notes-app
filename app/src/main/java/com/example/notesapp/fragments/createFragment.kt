@@ -1,15 +1,15 @@
 package com.example.notesapp.fragments
 
-import android.nfc.Tag
+
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentCreateBinding
 import com.example.notesapp.entity.Notes
@@ -24,7 +24,7 @@ class createFragment : Fragment() {
 
     lateinit var binding: FragmentCreateBinding     //for viewBinding
     var priority : String = "1"                     //default priority = 1(green)
-    val viewModel: NotesViewModel by viewModels()    //for viewModel
+    private val viewModel: NotesViewModel by viewModels()    //for viewModel
 
 
 
@@ -87,6 +87,9 @@ class createFragment : Fragment() {
         viewModel.addNotes(data)                                                    //to add the entity to DB
 
         Toast.makeText(context, "Note added successfully", Toast.LENGTH_SHORT).show()       //to show toast message
+
+        Navigation.findNavController(it!!).navigate(R.id.action_createFragment_to_homeFragment)     //to navigate back to home
+        //findNavController().navigate(R.id.action_createFragment_to_homeFragment)
 
     }
 
