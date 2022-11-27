@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.createFragment"
+    android:background="@color/theme_color">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <EditText
+            android:id="@+id/createTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_txt_shape"
+            android:hint=" Enter title : "
+            android:padding="16dp"
+            android:textColorHint="#80673AB7" />
+
+        <EditText
+            android:id="@+id/createSubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/edit_txt_shape"
+            android:hint=" Enter subtitle : "
+            android:padding="16dp"
+            android:textColorHint="#80673AB7" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/pRed"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/red_dot" />
+
+            <ImageView
+                android:id="@+id/pYellow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/yellow_dot" />
+
+            <ImageView
+                android:id="@+id/pGreen"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/green_dot" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <EditText
+            android:id="@+id/createNotes"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edit_txt_shape"
+            android:gravity="start"
+            android:hint=" Enter notes : "
+            android:padding="16dp"
+            android:textColorHint="#80673AB7" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/editBtnCreateDone"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="35dp"
+            android:contentDescription="@string/add"
+            android:elevation="900dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_baseline_done_all_24"
+            app:backgroundTint="@color/purple_main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:maxImageSize="32dp"
+            app:rippleColor="#FFFFFF" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
