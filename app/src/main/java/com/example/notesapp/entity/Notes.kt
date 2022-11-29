@@ -1,10 +1,13 @@
 package com.example.notesapp.entity
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 //A single entity contains all this features(properties) of the Notes table
 
+@Parcelize
 @Entity(tableName = "Notes")            //Notes is the name of the table(DB)
 class Notes (
 
@@ -16,4 +19,4 @@ class Notes (
     var date: String,
     var priority: String
 
-        )
+        ) : Parcelable

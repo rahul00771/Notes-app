@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_editNoteFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="data"
+            app:argType="com.example.notesapp.entity.Notes" />
     </fragment>
     <fragment
         android:id="@+id/createFragment"
