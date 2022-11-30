@@ -34,4 +34,10 @@ class NotesRepository(val dao: NotesDao) {
         dao.delete(notes)
     }
 
+    fun getHighNotes() : LiveData<List<Notes>> = dao.getHighNotes()
+    fun getMediumNotes() : LiveData<List<Notes>> = dao.getMediumNotes()
+    fun getLowNotes() : LiveData<List<Notes>> = dao.getLowNotes()
+
+
+
 }

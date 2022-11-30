@@ -24,4 +24,14 @@ interface NotesDao {
     @Delete
     fun delete(notes: Notes)
 
+    @Query("SELECT * FROM Notes WHERE priority = 3 ")         //to get notes of high priority
+    fun getHighNotes() : LiveData<List<Notes>>
+
+    @Query("SELECT * FROM Notes WHERE priority = 2 ")           //to get notes of medium priority
+    fun getMediumNotes() : LiveData<List<Notes>>
+
+    @Query("SELECT * FROM Notes WHERE priority = 1 ")              //to get notes of low priority
+    fun getLowNotes() : LiveData<List<Notes>>
+
+
 }
