@@ -74,7 +74,7 @@ class createFragment : Fragment() {
 
     }
 
-    private fun createNotes(it: View?)
+    private fun createNotes(it: View?)      //taking inputs from the next fields
     {
         val title = binding.createTitle.text.toString()
         val subTitle = binding.createSubTitle.text.toString()

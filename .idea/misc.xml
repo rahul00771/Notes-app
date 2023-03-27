@@ -23,12 +23,18 @@
         <entry key="..\:/android_5th/notesapp/app/src/main/res/layout/fragment_edit_note.xml" value="0.1" />
         <entry key="..\:/android_5th/notesapp/app/src/main/res/layout/fragment_home.xml" value="0.1334853090172239" />
         <entry key="..\:/android_5th/notesapp/app/src/main/res/layout/item_list.xml" value="0.264" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/drawable/dialog_box_shape.xml" value="0.1765" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/drawable/edit_txt_shape.xml" value="0.1695" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/drawable/filtering_btn_shape.xml" value="0.1695" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/activity_splash_screen.xml" value="0.27447916666666666" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/delete_dialog.xml" value="0.1334853090172239" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/fragment_create.xml" value="0.25905797101449274" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/fragment_edit_note.xml" value="0.1334853090172239" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/fragment_home.xml" value="0.176" />
         <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/layout/item_list.xml" value="0.264" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/menu/delete_menu.xml" value="0.27025641025641023" />
+        <entry key="..\:/android_5th/repo/notesapp/app/src/main/res/menu/search_menu.xml" value="0.14907407407407408" />
       </map>
     </option>
   </component>

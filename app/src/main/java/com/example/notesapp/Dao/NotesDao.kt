@@ -18,11 +18,11 @@ interface NotesDao {
     @Update
     fun updateNotes(notes: Notes)           //to update an entry(entity)
 
-   // @Query("DELETE FROM Notes WHERE id = id")       //to delete an entry with id = id
-    //fun delete(id: Int)
+    @Query("DELETE FROM Notes WHERE id = :id")       //to delete an entry with id = id
+    fun delete(id: Int)
 
-    @Delete
-    fun delete(notes: Notes)
+    //@Delete
+    //fun delete(notes: Notes)
 
     @Query("SELECT * FROM Notes WHERE priority = 3 ")         //to get notes of high priority
     fun getHighNotes() : LiveData<List<Notes>>

@@ -11,9 +11,16 @@ import com.example.notesapp.entity.Notes
 import com.example.notesapp.fragments.HomeFragment
 import com.example.notesapp.fragments.HomeFragmentDirections
 
-class notesAdapter(val requireContext: Context, val notesList: List<Notes>) : RecyclerView.Adapter<notesAdapter.notesViewHolder>() {
+class notesAdapter(val requireContext: Context, var notesList: List<Notes>) : RecyclerView.Adapter<notesAdapter.notesViewHolder>() {
 
-    class notesViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root) {}
+    /*fun filtering(newFilteredList: ArrayList<Notes>) {
+
+        notesList = newFilteredList     //receiving new list of items(notes) filtered
+        notifyDataSetChanged()
+
+    }*/
+
+    class notesViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): notesViewHolder {        //inflates the layout
@@ -46,7 +53,8 @@ class notesAdapter(val requireContext: Context, val notesList: List<Notes>) : Re
 
     }
 
-    override fun getItemCount() = notesList.size                                                //returns the size of the entities
+    override fun getItemCount() = notesList.size    //returns the size of the entities
+
 
 }
 

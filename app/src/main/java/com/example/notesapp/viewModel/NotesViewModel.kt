@@ -32,15 +32,15 @@ class NotesViewModel(application: Application): AndroidViewModel(application) { 
         repository.updateNotes(notes)
     }
 
-    /*fun deleteNotes(id : Int)
+    fun deleteNotes(id : Int)
     {
         repository.deleteNotes(id)
-    }*/
+    }
 
-    fun deleteNotes(notes: Notes)
+    /*fun deleteNotes(notes: Notes)
     {
         repository.deleteNotes(notes)
-    }
+    }*/
 
     fun getHighNotes() : LiveData<List<Notes>> = repository.getHighNotes()
     fun getMediumNotes() : LiveData<List<Notes>> = repository.getMediumNotes()

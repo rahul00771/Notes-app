@@ -1,20 +1,22 @@
 package com.example.notesapp.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.provider.SyncStateContract.Helpers.update
+import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentEditNoteBinding
 import com.example.notesapp.entity.Notes
 import com.example.notesapp.viewModel.NotesViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,6 +28,7 @@ class editNoteFragment : Fragment() {
     private var priority = "1"
     val viewModel: NotesViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +37,7 @@ class editNoteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentEditNoteBinding.inflate(layoutInflater, container, false)
 
+        setHasOptionsMenu(true)         //to set options menu true
 
         //to bind the layout views in the editFragment
 
@@ -118,7 +122,44 @@ class editNoteFragment : Fragment() {
 
         Navigation.findNavController(it!!).navigate(R.id.action_editNoteFragment_to_homeFragment)     //to navigate back to home
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {      //for toolbar menu
+
+        inflater.inflate(R.menu.delete_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.menu_delete)
+        {
+
+            val bottomSheet : BottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetStyle)       //for bottom sheet dialog box
+            bottomSheet.setContentView(R.layout.delete_dialog)                              //setting the content of bottom sheet
+
+            val textViewYes = bottomSheet.findViewById<TextView>(R.id.dialog_yes_button)
+            val textViewNo = bottomSheet.findViewById<TextView>(R.id.dialog_no_button)
+
+            textViewYes?.setOnClickListener {
+                viewModel.deleteNotes(oldNotes.data.id!!)
+                bottomSheet.dismiss()
+                findNavController().navigate(R.id.action_editNoteFragment_to_homeFragment)              //navigate back to home fragment
+                Toast.makeText(context, "Note deleted successfully", Toast.LENGTH_SHORT).show()
+
+            }
+
+            textViewNo?.setOnClickListener {
+
+                bottomSheet.dismiss()
+
+            }
+
+            bottomSheet.show()                                                              //displaying the bottom sheet
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 

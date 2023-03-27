@@ -24,15 +24,15 @@ class NotesRepository(val dao: NotesDao) {
         dao.updateNotes(notes)
     }
 
-    //fun deleteNotes(id : Int)
-   // {
-      //  dao.delete(id)
-    //}
+   fun deleteNotes(id : Int)
+    {
+      dao.delete(id)
+    }
 
-    fun deleteNotes(notes: Notes)
+    /*fun deleteNotes(notes: Notes)
     {
         dao.delete(notes)
-    }
+    }*/
 
     fun getHighNotes() : LiveData<List<Notes>> = dao.getHighNotes()
     fun getMediumNotes() : LiveData<List<Notes>> = dao.getMediumNotes()
