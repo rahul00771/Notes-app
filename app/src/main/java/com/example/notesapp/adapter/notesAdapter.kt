@@ -13,12 +13,12 @@ import com.example.notesapp.fragments.HomeFragmentDirections
 
 class notesAdapter(val requireContext: Context, var notesList: List<Notes>) : RecyclerView.Adapter<notesAdapter.notesViewHolder>() {
 
-    /*fun filtering(newFilteredList: ArrayList<Notes>) {
+    fun filtering(newFilteredList: ArrayList<Notes>) {
 
         notesList = newFilteredList     //receiving new list of items(notes) filtered
         notifyDataSetChanged()
 
-    }*/
+    }
 
     class notesViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root)
 

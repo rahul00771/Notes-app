@@ -3,11 +3,11 @@ package com.example.notesapp.fragments
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.notesapp.R
 import com.example.notesapp.adapter.notesAdapter
@@ -20,8 +20,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding       //for view binding
     val viewModel : NotesViewModel by viewModels()
-    //var oldMyNotes = ArrayList<Notes>()       //for search
-    //private lateinit var adapter: notesAdapter
+    var oldMyNotes = ArrayList<Notes>()       //for search
+    private lateinit var adapter: notesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +36,9 @@ class HomeFragment : Fragment() {
 
         viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
             binding.rcvAllNotes.layoutManager = StaggeredGridLayoutManager(2, 1)
-            //oldMyNotes = notesList as ArrayList<Notes>      //for searching
-            binding.rcvAllNotes.adapter = notesAdapter(requireContext(), notesList)
+            oldMyNotes = notesList as ArrayList<Notes>      //for searching
+            adapter = notesAdapter(requireContext(), notesList)
+            binding.rcvAllNotes.adapter = adapter
 
         }
 
@@ -46,8 +47,9 @@ class HomeFragment : Fragment() {
                                                                                     //fetches notes with high priority
             viewModel.getHighNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.layoutManager = StaggeredGridLayoutManager(2, 1)
-                //oldMyNotes = notesList as ArrayList<Notes>      //for searching
-                binding.rcvAllNotes.adapter = notesAdapter(requireContext(), notesList)
+                oldMyNotes = notesList as ArrayList<Notes>      //for searching
+                adapter = notesAdapter(requireContext(), notesList)
+                binding.rcvAllNotes.adapter = adapter
 
                 Toast.makeText(context, "Showing notes with HIGH priority",Toast.LENGTH_SHORT).show()
 
@@ -58,8 +60,9 @@ class HomeFragment : Fragment() {
                                                                                     //fetches notes with low priority
             viewModel.getLowNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.layoutManager = StaggeredGridLayoutManager(2, 1)
-                //oldMyNotes = notesList as ArrayList<Notes>      //for searching
-                binding.rcvAllNotes.adapter = notesAdapter(requireContext(), notesList)
+                oldMyNotes = notesList as ArrayList<Notes>      //for searching
+                adapter = notesAdapter(requireContext(), notesList)
+                binding.rcvAllNotes.adapter = adapter
 
                 Toast.makeText(context, "Showing notes with LOW priority",Toast.LENGTH_SHORT).show()
 
@@ -70,8 +73,9 @@ class HomeFragment : Fragment() {
                                                                                         //fetches notes with medium priority
             viewModel.getMediumNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.layoutManager = StaggeredGridLayoutManager(2, 1)
-                //oldMyNotes = notesList as ArrayList<Notes>      //for searching
-                binding.rcvAllNotes.adapter = notesAdapter(requireContext(), notesList)
+                oldMyNotes = notesList as ArrayList<Notes>      //for searching
+                adapter = notesAdapter(requireContext(), notesList)
+                binding.rcvAllNotes.adapter = adapter
 
                 Toast.makeText(context, "Showing notes with MEDIUM priority",Toast.LENGTH_SHORT).show()
 
@@ -83,8 +87,9 @@ class HomeFragment : Fragment() {
                                                                                         //fetches all notes
             viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
                 binding.rcvAllNotes.layoutManager = StaggeredGridLayoutManager(2, 1)
-                //oldMyNotes = notesList as ArrayList<Notes>      //for searching
-                binding.rcvAllNotes.adapter = notesAdapter(requireContext(), notesList)
+                oldMyNotes = notesList as ArrayList<Notes>      //for searching
+                adapter = notesAdapter(requireContext(), notesList)
+                binding.rcvAllNotes.adapter = adapter
 
             }
 
@@ -141,5 +146,65 @@ class HomeFragment : Fragment() {
         }
         adapter.filtering(newFilteredList)      //sending new list of filtered notes
     }*/
+
+
+
+    //from gfg code
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // below line is to get our inflater
+
+
+        // inside inflater we are inflating our menu file.
+        inflater.inflate(R.menu.search_menu, menu)
+
+        // below line is to get our menu item.
+        val searchItem = menu.findItem(R.id.app_bar_search)
+
+        // getting search view of our item.
+        val searchView = searchItem.actionView as SearchView?
+
+
+        // below line is to call set on query text listener method.
+        searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                // inside on query text change method we are
+                // calling a method to filter our recycler view.
+                filter(newText)
+                return false
+            }
+        })
+    }
+
+    private fun filter(newText : String)
+    {
+        val newFilteredList = ArrayList<Notes>()      //new list for search(sending to adapter)
+
+        for(i in oldMyNotes)
+        {
+            if ((i.title.contains(newText!!)) || (i.subTitle.contains(newText!!)))
+            {
+                newFilteredList.add(i)             //newFilteredList to be sent to adapter for showing filtered
+            }
+
+        }
+
+        if (newFilteredList.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(context, "No Data Found..", Toast.LENGTH_SHORT).show()
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            adapter.filtering(newFilteredList)
+        }
+
+              //sending new list of filtered notes
+    }
+
 
 }
